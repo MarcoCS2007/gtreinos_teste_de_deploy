@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    env_file:
+      - ./gtreinos/.env  # Injeta as variáveis de forma segura aqui!
+    volumes:
+      - static_volume:/app/static_root
+    expose:
+      - "8000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf # Sua config do Nginx
+      - static_volume:/app/static_root # Nginx lê os estáticos daqui
+    depends_on:
+      - web
+
+volumes:
+  static_volume:

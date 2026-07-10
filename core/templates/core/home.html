@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if request.user.professor %}
+        <section class="card stack">
+            <h2 class="title">Bem-vindo Professor</h2>
+            <p class="muted">Gerencie prescrições de forma rápida e acompanhe a execução dos alunos.</p>
+            <div>
+                <a class="btn-dark" href="{% url 'exercicios:criar' %}">Criar Treino</a>
+            </div>
+        </section>
+    {% elif request.user.aluno %}
+        <section class="card stack">
+            <h2 class="title">Treino do Dia</h2>
+            <p class="muted">Abra seus exercícios, registre a carga do top set e marque como concluído.</p>
+            <div>
+                <a class="btn-dark" href="{% url 'exercicios:lista' %}">Ver Meus Exercícios</a>
+            </div>
+        </section>
+    {% else %}
+        <section class="card stack">
+            <h2 class="title">Perfil não definido</h2>
+            <p class="muted">Seu usuário ainda não possui o perfil de Aluno ou Professor.</p>
+        </section>
+    {% endif %}
+{% endblock %}

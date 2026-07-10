@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card" style="max-width: 450px; margin: 2rem auto;">
+    <h2 class="title">Entrar</h2>
+    <p class="muted" style="margin-bottom: 1.5rem;">
+        Se você ainda não criou uma conta, por favor, 
+        <a href="{% url 'account_signup' %}" style="color: var(--text);">cadastre-se</a> primeiro.
+    </p>
+
+    <form class="login stack" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        
+        <div class="stack" style="margin-top: 0.5rem;">
+            <button class="btn-dark" type="submit">Entrar</button>
+            <a class="btn-link" href="{% url 'account_reset_password' %}" style="text-align: center;">
+                Esqueceu sua senha?
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

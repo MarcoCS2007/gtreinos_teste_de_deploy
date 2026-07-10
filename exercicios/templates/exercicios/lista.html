@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="stack">
+        <header class="card stack">
+            <h2 class="title">Meus Treinos</h2>
+            <p class="muted">Lista de exercícios com status de execução.</p>
+            {% if request.user.professor %}
+                <div>
+                    <a class="btn-dark" href="{% url 'exercicios:criar' %}">Novo Treino</a>
+                </div>
+            {% endif %}
+        </header>
+
+        {% for exercicio in exercicios %}
+            <article class="card stack">
+                <div>
+                    <h3 class="title" style="font-size:1.1rem;">{{ exercicio.nome }}</h3>
+                    <p class="muted" style="margin-top:0.25rem;">
+                        Status:
+                        {% if exercicio.esta_concluido %}
+                            Concluído
+                        {% else %}
+                            Pendente
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="nav-links">
+                    <a class="btn-dark" href="{% url 'exercicios:visualizar' exercicio.id %}">Visualizar</a>
+                    <a class="btn-danger" href="{% url 'exercicios:deletar' exercicio.id %}">Deletar</a>
+                </div>
+            </article>
+        {% empty %}
+            <section class="card">
+                <p class="muted">Nenhum exercício cadastrado até o momento.</p>
+            </section>
+        {% endfor %}
+    </section>
+{% endblock %}

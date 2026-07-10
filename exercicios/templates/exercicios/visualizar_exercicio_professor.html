@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="card stack">
+        <h2 class="title">Relatório do Exercício</h2>
+        <p class="muted">Visualização em modo leitura para acompanhamento do aluno.</p>
+
+        <div class="stack" style="gap:0.5rem;">
+            <p><strong>Nome:</strong> {{ exercicio.nome }}</p>
+            <p><strong>Aluno:</strong> {{ exercicio.aluno.user.username }}</p>
+            <p>
+                <strong>Séries prescritas:</strong>
+                {% if exercicio.series %}{{ exercicio.series }}{% else %}-{% endif %}
+            </p>
+            <p>
+                <strong>Repetições prescritas:</strong>
+                {% if exercicio.repeticoes %}{{ exercicio.repeticoes }}{% else %}-{% endif %}
+            </p>
+            <p>
+                <strong>Carga lançada (kg):</strong>
+                {% if exercicio.peso %}{{ exercicio.peso }}{% else %}-{% endif %}
+            </p>
+            <p>
+                <strong>Status:</strong>
+                {% if exercicio.esta_concluido %}
+                    Concluído
+                {% else %}
+                    Pendente
+                {% endif %}
+            </p>
+        </div>
+
+        <div>
+            <a class="btn-link" href="{% url 'exercicios:lista' %}">Voltar para lista</a>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="stack">
+        <article class="card stack">
+            <h2 class="title">Execução do Treino</h2>
+            <p class="muted">Siga a prescrição e registre sua carga no top set.</p>
+
+            <div class="stack" style="gap:0.5rem;">
+                <p><strong>Exercício:</strong> {{ form.instance.nome }}</p>
+                <p>
+                    <strong>Séries prescritas:</strong>
+                    {% if form.instance.series %}{{ form.instance.series }}{% else %}-{% endif %}
+                </p>
+                <p>
+                    <strong>Repetições prescritas:</strong>
+                    {% if form.instance.repeticoes %}{{ form.instance.repeticoes }}{% else %}-{% endif %}
+                </p>
+            </div>
+        </article>
+
+        <article class="card stack">
+            <h3 class="title" style="font-size:1.1rem;">Lançar Carga</h3>
+
+            <form method="post" class="stack">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-dark">Atualizar Carga</button>
+            </form>
+        </article>
+    </section>
+{% endblock %}

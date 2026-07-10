@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gtreinos</title>
+    <style>
+        :root {
+            --bg: #f3f4f6;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --btn: #111827;
+            --btn-hover: #1f2937;
+            --danger: #7f1d1d;
+            --danger-hover: #991b1b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+        }
+
+        .topbar {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .topbar-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-link,
+        .btn-dark,
+        .btn-danger {
+            border: 0;
+            border-radius: 0.65rem;
+            padding: 0.68rem 0.95rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+        }
+
+        .btn-link {
+            color: var(--text);
+            background: transparent;
+        }
+
+        .btn-link:hover {
+            background: #eef2f7;
+        }
+
+        .btn-dark {
+            background: var(--btn);
+            color: #fff;
+        }
+
+        .btn-dark:hover {
+            background: var(--btn-hover);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background: var(--danger-hover);
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .title {
+            margin: 0 0 0.25rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .muted {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .stack {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 0.65rem;
+            padding: 0.75rem 0.85rem;
+            min-height: 44px;
+            background: #fff;
+            color: var(--text);
+            font: inherit;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            min-height: auto;
+        }
+
+        ul.errorlist {
+            margin: 0.35rem 0;
+            padding-left: 1rem;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-wrap">
+            <h1 class="brand">Gtreinos</h1>
+            <nav class="nav-links" aria-label="Navegação principal">
+                <a class="btn-link" href="{% url 'core:home' %}">Início</a>
+                <a class="btn-link" href="{% url 'exercicios:lista' %}">Meus Treinos</a>
+                <form class="logout-form" action="{% url 'account_logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn-dark" type="submit">Sair</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

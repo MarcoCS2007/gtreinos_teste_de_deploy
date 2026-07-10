@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="card" style="max-width: 450px; margin: 2rem auto;">
+    <h2 class="title">Cadastrar-se</h2>
+    <p class="muted" style="margin-bottom: 1.5rem;">
+        Já tem uma conta? Então, por favor, 
+        <a href="{{ login_url }}" style="color: var(--text);">entre aqui</a>.
+    </p>
+
+    <form class="signup stack" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+        {% csrf_token %}
+        
+        <!-- O form.as_p renderiza as labels, inputs e a lista de validação de senha -->
+        {{ form.as_p }}
+        
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        
+        <button class="btn-dark" type="submit" style="margin-top: 1rem;">Cadastrar-se</button>
+    </form>
+</div>
+{% endblock %}

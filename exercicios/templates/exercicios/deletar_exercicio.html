@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="card stack" style="max-width:640px; margin:0 auto;">
+        <h2 class="title">Confirmar Exclusão</h2>
+        <p class="muted">Tem certeza que deseja apagar o exercício {{ exercicio.nome }}?</p>
+
+        <form method="post" class="nav-links">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Confirmar Exclusão</button>
+            <a class="btn-link" href="{% url 'exercicios:lista' %}">Cancelar</a>
+        </form>
+    </section>
+{% endblock %}

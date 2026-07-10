@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="card stack" style="max-width:640px; margin:0 auto;">
+        <h2 class="title">Criar Treino</h2>
+        <p class="muted">Preencha os dados da prescrição para o aluno.</p>
+
+        <form method="post" class="stack">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-dark">Salvar Treino</button>
+        </form>
+    </section>
+{% endblock %}
