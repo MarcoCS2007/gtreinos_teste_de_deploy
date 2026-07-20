@@ -1,5 +1,16 @@
 asgiref==3.11.1
+cfgv==3.5.0
+distlib==0.4.3
 Django==6.0.4
 django-allauth==65.16.0
+filelock==3.31.1
+identify==2.6.19
+nodeenv==1.10.0
+platformdirs==4.10.1
+pre_commit==4.6.0
+python-discovery==1.4.4
 python-dotenv==1.2.2
+PyYAML==6.0.3
+ruff==0.15.22
 sqlparse==0.5.5
+virtualenv==21.6.1

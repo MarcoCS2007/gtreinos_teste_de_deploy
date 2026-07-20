@@ -1,0 +1,11 @@
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff substitui Flake8, Black e isort de uma vez só
+    rev: v0.3.5 
+    hooks:
+      # Roda o Linter para achar erros de sintaxe/lógica
+      - id: ruff
+        args: [ --fix ]
+      # Roda o Formatador para padronizar o visual do código
+      - id: ruff-format
